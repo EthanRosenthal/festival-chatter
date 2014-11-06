@@ -32,7 +32,7 @@ def train_then_test(df, band_list):
         calculate_accuracy(y_train_pred[ y_train==band ],
                     y_train[y_train==band]
                     )
-    # return conditional_prob
+    return conditional_prob
 
 
 def calculate_accuracy(y_pred, y_true):
@@ -43,7 +43,7 @@ def calculate_accuracy(y_pred, y_true):
 def train_test_split(X, y):
     X_train, X_test, y_train, y_test \
              = cross_val.train_test_split(X,
-    r                                      y,
+                                          y,
                                           test_size=0.2,
                                           random_state=33)
     return X_train, X_test, y_train, y_test
@@ -100,7 +100,7 @@ def calculate_conditional_probability(band_list, class_bag):
     # Calculate conditional probability
     conditional_prob = {}
     min_prob = {}
-    alpha = 1.
+    alpha = .5
     for band in band_list:
         tmp_prob = {}
         # Get total number of words for a given band

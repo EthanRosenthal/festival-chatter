@@ -24,7 +24,7 @@ def custom_tokenize(text, custom_words=None, clean_custom_words=False):
     if clean_custom_words:
         custom_words = tokenize_custom_words(custom_words)
 
-    words = [w.lower() for w in text.split() if not re.match(stop_url, w)]
+    words = [w.lower().split("'")[0] for w in text.split() if not re.match(stop_url, w)]
     words = tokenizer.tokenize(' '.join(words))
     words = [w for w in words if w not in stops and w not in custom_words]
 
@@ -46,6 +46,8 @@ def tokenize_custom_words(custom_words):
             v_tokens = [w.replace("'","") for w in v_tokens] # Remove apostrophes
             custom_tokens.extend(k_tokens)
             custom_tokens.extend(v_tokens)
+            custom_tokens.append(''.join(k_tokens)) # For hashtags (e.g. kanyewest)
+            custom_tokens.append(''.join(v_tokens))
     elif type(custom_words) is list:
         custom_tokens = [tokenizer.tokenize(words) for words in custom_words]
         custom_tokens = [words.replace("'","") for words in custom_tokens]

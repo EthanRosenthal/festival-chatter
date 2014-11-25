@@ -1,6 +1,9 @@
 """
 Collect all tweets containg words in "filter" at bottom.
 Store tweets in MongoDB
+
+This code was basically totally stolen from
+http://www.danielforsyth.me/analyzing-a-nhl-playoff-game-with-twitter/
 """
 
 import tweepy

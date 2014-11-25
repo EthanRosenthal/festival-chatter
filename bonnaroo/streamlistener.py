@@ -1,12 +1,7 @@
-# -*- coding: utf-8 -*-
 """
-Created on Sun May 04 23:38:31 2014
-
-@author: Ethan
+Collect all tweets containg words in "filter" at bottom.
+Store tweets in MongoDB
 """
-
-# This code was basically totally stolen from 
-# http://www.danielforsyth.me/analyzing-a-nhl-playoff-game-with-twitter/
 
 import tweepy
 import sys
@@ -40,15 +35,8 @@ class CustomStreamListener(tweepy.StreamListener):
         data['created_at'] = status.created_at
         data['geo'] = status.geo
         data['source'] = status.source
-      
+
         self.db.Tweets.insert(data)
-
-        # self.tweetCount+=1
-        # if self.tweetCount < 60000:
-        #     return True
-        # else:
-        #     return False          
-
 
     def on_error(self, status_code):
         print >> sys.stderr, 'Encountered error with status code:', status_code

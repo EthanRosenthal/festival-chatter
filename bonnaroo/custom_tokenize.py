@@ -2,7 +2,7 @@ from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 import re
 
-def custom_tokenize(text, custom_words=None, clean_custom_words=False):
+def custom_tokenize(text, custom_words=[], clean_custom_words=False):
     """
     This routine takes an input "text" and strips punctuation (except apostrophes),
     converts each words to lowercase, removes standard english stopwords, removes
